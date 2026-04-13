@@ -7,8 +7,16 @@ public class Game{
     private Player player;
 
     public void start(){
-        map = new Map(10,10);
+        map = new Map(20,15);
         player = new Player();
+
+
+        int x,y;
+        do{
+            x = (int)(Math.random() * 20); // math.random gives random numbers between 0.0 and 1.0
+            y = (int)(Math.random() * 15);//multiply by 20 ex : 0.12*20 = 2.4, then int() gives only 2
+        }while(!map.isWalkable(x, y));//so x becomes random number between 0 - 19
+
         player.setPosition(5,5);
 
         isRunning = true;
@@ -29,6 +37,7 @@ public class Game{
         }
     }
     private void processInput(){
+        render();
         System.out.print("move (WASD) : ");
         String input = scanner.nextLine().toLowerCase();
 

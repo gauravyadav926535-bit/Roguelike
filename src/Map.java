@@ -1,7 +1,10 @@
+import java.util.Random;
+
 public class Map {
     private int height;
     private int width;
     private char[][] grid;
+    private Random random = new Random();
     
     Map(int width, int height){
         System.out.println("Map Created!");
@@ -17,7 +20,11 @@ public class Map {
                 if(y == 0 || y == height - 1 || x == 0 || x == width - 1){
                     grid[y][x] = '#'; // walls
                 }else{
-                    grid[y][x] = '.'; //floor
+                    if(random.nextInt(100) < 30){ // generates numbers 0 - 99
+                        grid[y][x] = '#'; // 30% walls
+                    }else{
+                        grid[y][x] = '.'; // 70% floor
+                    }
                 }
             }
         }
